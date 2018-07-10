@@ -61,7 +61,8 @@ export default {
   position: relative;
   height: 100vh;
   font-family: 'Ropa Sans', sans-serif;
-  background-color: currentColor;
+  // background-color: currentColor;
+  background: linear-gradient(#2193b0, #6dd5ed );
   .title {
     text-align: left;
     margin-bottom: 30px;
