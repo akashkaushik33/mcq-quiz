@@ -61,6 +61,7 @@ export default {
   position: relative;
   height: 100vh;
   font-family: 'Ropa Sans', sans-serif;
+  background-color: currentColor;
   .title {
     text-align: left;
     margin-bottom: 30px;
@@ -93,6 +94,9 @@ export default {
     margin-left: 114px;
     background-color: #3B5998;
     color: white;
+  }
+  .md-elevation-3{
+    background-color: white;
   }
 }
 </style>
