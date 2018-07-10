@@ -42,7 +42,7 @@ export default {
   mixins: [dataService],
   data () {
     return {
-      showDialog: true,
+      showDialog: false,
       mcq: [],
       responses: []
     }
@@ -54,10 +54,13 @@ export default {
     }
   },
   created() {
-    this.getData().then(data => {
+    if(sessionStorage.getItem('login')=='connected')
+    { this.showDialog=true
+      this.getData().then(data => {
       this.mcq = data.data.user
       console.log(this.mcq)
     })
+    }
   }
 }
 </script>

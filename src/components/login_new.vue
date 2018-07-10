@@ -1,32 +1,27 @@
 <template>
-  <div class="login-wrap">
-    <div class="login-html">
-      <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group id="InputGroup1"
-                      label="Email address:"
-                      label-for="Input1">
-          <b-form-input id="Input1"
-                        type="email"
-                        v-model="form.email"
-                        required
-                        placeholder="Enter email">
-          </b-form-input>
-        </b-form-group>
-        <b-form-group id="InputGroup2"
-                      label="Password:"
-                      label-for="Input2">
-          <b-form-input id="Input2"
-                        type="password"
-                        v-model="form.password"
-                        required
-                        placeholder="Enter name">
-          </b-form-input>
-        </b-form-group>
-        <b-button type="submit" variant="primary">Submit</b-button>
-        <b-button type="reset" variant="danger">Reset</b-button>
-      </b-form>
-    </div>
+  <div class="centered-container">
+    <md-content class="md-elevation-3">
+      <div class="title">
+        <div class="md-title">Login</div>
+      </div>
+      <div class="form">
+        <md-field>
+          <label>E-mail</label>
+          <md-input v-model="form.email" autofocus></md-input>
+        </md-field>
+
+        <md-field md-has-password>
+          <label>Password</label>
+          <md-input v-model="form.password" type="password"></md-input>
+        </md-field>        
+        <md-button type="submit" class="md-primary submit">Submit</md-button>
+      </div>
+        <div class="md-title"><hr/>Or</div>
+        <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+    
+    </md-content>
   </div>
+  
 </template>
 <script>
 export default {
@@ -41,7 +36,7 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      sessionStorage.setItem('login','connected')
     },
     onReset (evt) {
       evt.preventDefault();
@@ -51,43 +46,53 @@ export default {
       /* Trick to reset/clear native browser form validation state */
       // this.show = false;
       // this.$nextTick(() => { this.show = true });
-    }
+    },
+  },
+  created(){
   }
 }
 </script>
-<style>
-.col-form-label{
-  float:left;
-  color:white
-}
-body{
-	margin:0;
-	color:#6a6f8c;
-	background:#c8c8c8;
-	font:600 16px/18px 'Open Sans',sans-serif;
-}
-*,:after,:before{box-sizing:border-box}
-.clearfix:after,.clearfix:before{content:'';display:table}
-.clearfix:after{clear:both;display:block}
-a{color:inherit;text-decoration:none}
-
-.login-wrap{
-	width:100%;
-	margin:auto;
-	max-width:525px;
-  min-height:320px;
-  margin-top:100px;
-	position:relative;
-	background: no-repeat center;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
-}
-.login-html{
-	width:100%;
-	height:100%;
-	position:absolute;
-	padding:90px 70px 50px 70px;
-	background:#2c3e50;
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+.centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  font-family: 'Ropa Sans', sans-serif;
+  .title {
+    text-align: left;
+    margin-bottom: 30px;
+    img {
+      margin-bottom: 16px;
+      max-width: 80px;
+    }
+  }
+  .actions {
+    .md-button {
+      margin: 0;
+    }
+  }
+  .form {
+    margin-bottom: 60px;
+  }
+  .md-content {
+    z-index: 1;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  .fb-login-button{
+    margin-top:10px;
+  }
+  .submit{
+    float: left;
+    margin-top: -10px;
+    margin-left: 114px;
+    background-color: #3B5998;
+    color: white;
+  }
 }
 </style>
-
-
