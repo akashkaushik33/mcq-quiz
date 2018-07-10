@@ -6,7 +6,16 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created () {
+    console.log('FB', FB)
+    FB.getLoginStatus( (res) => {
+      console.log('RES', res)
+      if (res.status === 'connected') {
+        this.$router.push({name: 'home'})
+      }
+    })
+  }
 }
 </script>
 

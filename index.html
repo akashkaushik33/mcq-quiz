@@ -7,6 +7,23 @@
     <title>mcq-quiz</title>
   </head>
   <body>
+    <div id="fb-root"></div>
+    <script>
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          sessionStorage.setItem('login',response.status);
+          console.log('here', response)
+        });
+      }
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1767336439980544&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+      console.log('sessionStorage', sessionStorage)
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
