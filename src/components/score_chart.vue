@@ -34,8 +34,6 @@
         if (this.chart) {
           this.chart.destroy();
         }
-
-        console.log('scoreeeeeeeeeeee',this.score)
         const ctx = document.getElementById("myChart");
 
         Chart.plugins.register({

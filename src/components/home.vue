@@ -29,13 +29,13 @@
             <md-dialog-actions>
               <md-button class="md-primary md-raised" @click="showDialog = false">Close</md-button>
             </md-dialog-actions>
-            
+
           </md-dialog>
         </div>
       </div>
 
       <div v-if="!showDialog && !testCompleted && loaded">
-        <h7>{{timer}} (in mm:ss)</h7>
+        <h6>{{timer}} (in mm:ss)</h6>
         <md-card md-with-hover class="mt-5"  v-for="(item, indexQ) in mcq" :key="indexQ">
           <md-card-header >
             <h5  >Question {{indexQ+1}} </h5>
@@ -154,15 +154,11 @@ export default {
 
     },
     getResponse(answer, item, index) {
-      console.log('this.responses', this.responses)
-      console.log('index', index)
-      console.log('item', item)
       this.userSubmission[index] = {
         'id': item.id,
         'section': item.section,
         'answer': answer.toUpperCase()
       }
-      console.log('this.userSubmission', this.userSubmission)
     },
     calculateScore () {
       this.userSubmission.sort( (a, b) => {
@@ -215,7 +211,10 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../main.scss';
+// @import '../main.scss';
+body {
+  background: linear-gradient(to right, #2193b0, #6dd5ed );
+}
 .logout{
   position: absolute;
   top: 0px;

@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     login() {
-      console.log('EVENT')
       this.form.email.toLowerCase()
       if (this.form.email === this.user.email & this.form.password === this.user.password) {
         sessionStorage.setItem('status', 'connected')
@@ -57,19 +56,19 @@ export default {
       js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1767336439980544&autoLogAppEvents=1';
       fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-
-      console.log('MOUNT')
   }
 }
 </script>
 <style lang="scss">
-@import '../main.scss';
+// @import '../main.scss';
 .centered-container {
+
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   height: 100vh;
+  background: linear-gradient(to right, #2193b0, #6dd5ed );
   .title {
     text-align: left;
     margin-bottom: 30px;
