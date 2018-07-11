@@ -58,6 +58,8 @@ export default {
       console.log('EVENT')
       form.email.toLowerCase()
       if (form.email === this.user.email & form.password === this.user.password) {
+        sessionStorage.setItem('status', 'conncted')
+        sessionStorage.setItem('loggedInWith', 'credentials')
         this.$router.push({name : 'home'})
       } 
     }

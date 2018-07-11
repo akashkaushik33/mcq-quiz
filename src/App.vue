@@ -7,14 +7,26 @@
 <script>
 export default {
   name: 'App',
+  methods: {
+    
+  },
   created () {
-    console.log('FB', FB)
-    FB.getLoginStatus( (res) => {
-      console.log('RES', res)
-      if (res.status === 'connected') {
-        this.$router.push({name: 'home'})
-      }
-    })
+    // if (FB) {
+    //   FB.getLoginStatus( (res) => {
+    //   console.log('RES', res)
+    //   if (res.status === 'connected') {
+    //     // sessionStorage.clear()
+    //     sessionStorage.setItem('status', 'connected')
+    //     sessionStorage.setItem('loggedInWith', 'facebook')
+    //     this.$router.push({name: 'home'})
+    //   } else {
+    //     sessionStorage.setItem('status', 'disconnected')
+    //     sessionStorage.setItem('loggedInWith', null)
+    //     this.$router.push({name: 'login'})
+    //   }
+    // })
+    // }
+    
   }
 }
 </script>
@@ -30,4 +42,5 @@ export default {
   color: #2c3e50;
   // margin-top: 60px;
 }
+
 </style>

@@ -4,22 +4,23 @@
       <div class="title">
         <div class="md-title">Login</div>
       </div>
-      <div class="form">
+      <div class="mb-2">
         <md-field>
           <label>E-mail</label>
           <md-input v-model="form.email" autofocus></md-input>
         </md-field>
 
-        <md-field md-has-password>
+        <md-field>
           <label>Password</label>
           <md-input v-model="form.password" type="password"></md-input>
         </md-field>        
-        <md-button type="submit" class="md-primary submit">Submit</md-button>
+        <md-button type="submit" @click="login" class="md-primary mt-2 md-raised">Submit</md-button>
       </div>
-        <div class="md-title"><hr/>Or</div>
-        <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+      <div class="md-title"><hr/>Or</div>
+      <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
     
     </md-content>
+    
   </div>
   
 </template>
@@ -31,38 +32,44 @@ export default {
         email: '',
         password: ''
       },
+      user: {
+        email: "akashkaushik33@gmail.com",
+        password: "123456"
+      }
     }
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault();
-      sessionStorage.setItem('login','connected')
-    },
-    onReset (evt) {
-      evt.preventDefault();
-      /* Reset our form values */
-      this.form.email = ''
-      this.form.password = ''
-      /* Trick to reset/clear native browser form validation state */
-      // this.show = false;
-      // this.$nextTick(() => { this.show = true });
+    login() {
+      console.log('EVENT')
+      this.form.email.toLowerCase()
+      if (this.form.email === this.user.email & this.form.password === this.user.password) {
+        sessionStorage.setItem('status', 'connected')
+        this.$router.push({name : 'home'})
+        this.form = {}
+      } 
     },
   },
-  created(){
+  mounted(){
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1767336439980544&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      console.log('MOUNT')
   }
 }
 </script>
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Ropa+Sans');
+@import '../main.scss';
 .centered-container {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   height: 100vh;
-  font-family: 'Ropa Sans', sans-serif;
-  // background-color: currentColor;
-  background: linear-gradient(#2193b0, #6dd5ed );
   .title {
     text-align: left;
     margin-bottom: 30px;
@@ -76,9 +83,6 @@ export default {
       margin: 0;
     }
   }
-  .form {
-    margin-bottom: 60px;
-  }
   .md-content {
     z-index: 1;
     padding: 40px;
@@ -89,15 +93,11 @@ export default {
   .fb-login-button{
     margin-top:10px;
   }
-  .submit{
-    float: left;
-    margin-top: -10px;
-    margin-left: 114px;
-    background-color: #3B5998;
-    color: white;
-  }
+
   .md-elevation-3{
     background-color: white;
+    border-radius: 10px;
+
   }
 }
 </style>
