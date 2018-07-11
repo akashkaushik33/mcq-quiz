@@ -6,7 +6,7 @@
           <md-dialog :md-active.sync="showDialog">
             <md-dialog-title>Instructions</md-dialog-title>
           
-            <md-dialog-content >        
+            <md-dialog-content>        
               <ol>
                 <li>There are three sections in this quiz.</li>
                 <p> a) Electricity <br> b) Magnetism <br> c) Physics</p>
@@ -26,10 +26,10 @@
               </ol>
             </md-dialog-content>
 
-
             <md-dialog-actions>
               <md-button class="md-primary md-raised" @click="showDialog = false">Close</md-button>
             </md-dialog-actions>
+            
           </md-dialog>
         </div>
       </div>
@@ -38,32 +38,26 @@
         <h7>{{timer}} (in mm:ss)</h7>
         <md-card md-with-hover class="mt-5"  v-for="(item, indexQ) in mcq" :key="indexQ">
           <md-card-header >
-            <!-- <h4>{{item.section}}</h4> -->
             <h5  >Question {{indexQ+1}} </h5>
           </md-card-header>
+
           <md-card-content class="ml-auto">
             <h5 class="">{{item.question}}</h5>
-          <md-radio @change="getResponse(option.name, item, indexQ)" class="md-primary text-center ml-auto " v-for="(option, indexA) in item.options" v-model="responses[indexQ]" :value="option.name" :key="indexA"> {{option.value}} </md-radio>
+            <md-radio @change="getResponse(option.name, item, indexQ)" class="md-primary text-center ml-auto " v-for="(option, indexA) in item.options" v-model="responses[indexQ]" :value="option.name" :key="indexA"> {{option.value}} </md-radio>
           </md-card-content>
+
         </md-card>
         <md-button class="m-5 md-raised md-primary" @click="calculateScore">Submit</md-button>
       </div>
-      <div v-if="!loaded && !showDialog" class="loader">
-          <md-progress-spinner  class="align-middle spinner"  :md-diameter="70" :md-stroke="7" md-mode="indeterminate"></md-progress-spinner>
 
-        </div>
+      <div v-if="!loaded && !showDialog" class="loader">
+        <md-progress-spinner  class="align-middle spinner"  :md-diameter="70" :md-stroke="7" md-mode="indeterminate"></md-progress-spinner>
+      </div>
 
       <md-card v-if="testCompleted" class="mt-5" >
-        <!-- <md-button @click="changeGraph" class="md-icon-button md-dense md-raised md-primary">
-        <md-icon>cached</md-icon>
-      </md-button> -->
-        <div>
-        
-        </div>
-        <div>
-          <scoreChart :score="score" :type="type" ></scoreChart>
-        </div>
+        <scoreChart :score="score" :type="type" ></scoreChart>
       </md-card>
+
       <md-button v-if="testCompleted" class="md-raised md-primary mb-5 mt-2" @click="changeGraph">Toggle Graph</md-button>
       <md-button v-if="testCompleted" class="md-raised md-primary mb-5 ml-2 mt-2" @click="downloadGraph">Download Graph</md-button>
 
@@ -107,7 +101,6 @@ export default {
     showDialog () {
       if (this.showDialog === false) {
         this.setTimer()
-        console.log('ONE TIME', )
       }
     }
   },
@@ -115,7 +108,6 @@ export default {
     logout() {
       if (sessionStorage.loggedInBy === 'facebook') {
         FB.logout( (res) => {
-          console.log('LOG', res)
           sessionStorage.clear()
           this.$router.push({name: 'login'})
         })
@@ -190,13 +182,10 @@ export default {
         }
       })
       this.score.total = this.answerKey.length
-
-      console.log('Score', this.score)
       this.responses = new Array(this.responses.length).fill("")
       this.userSubmission = new Array(this.userSubmission.length).fill({})
 
       this.testCompleted = true
-      console.log('interval', this.interval)
       clearInterval(this.interval)
     },
 
@@ -206,7 +195,6 @@ export default {
     this.getData().then(res => {
       this.loaded = true
       this.mcq = res.data.mcq
-      console.log(this.mcq.length)
       this.responses = new Array(this.mcq.length).fill("")
       this.userSubmission = new Array(this.mcq.length).fill({})
       this.mcq.map( (item) => {
@@ -216,7 +204,6 @@ export default {
           'id': item.id
         })
       })
-      console.log(this.answerKey )
     })
   },
   beforeCreate() {

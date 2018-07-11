@@ -1,90 +1,103 @@
 <template>
-  <div class="main">
-    <h3 class="ml-1">{{msg}}</h3>
-    <div class="row">
-      <div class="mr-5 col-xs-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3">
-        <div class="ml-5 align-middle xs-elevation-5 sm-elevation-5 md-elevation-5 lg-elevation-5">
-          <form @submit.prevent="login(form)" class="">
-            <md-card class="md-layout-item">
-              <md-card-header>
-                <div class="md-title">Login</div>
-              </md-card-header>
-
-              <md-card-content>
-                <div class="">
-                  <md-field  >
-                    <label>Enter your email</label>
-                    <md-input v-model="form.email" required ></md-input>
-                    <span class="md-error">Enter valid email</span>
-                  </md-field>
-                  <md-field>
-                    <label>Enter your password</label>
-                    <md-input type= "password" v-model="form.password"></md-input>
-                  </md-field>
-                </div>
-
-              </md-card-content>
-
-              <md-card-actions>
-                <md-button type="submit" class="md-primary">Login</md-button>
-              </md-card-actions>
-            </md-card>           
-          </form>
-        </div>
+  <div class="centered-container">
+    <md-content class="md-elevation-3">
+      <div class="title">
+        <div class="md-title">Login</div>
       </div>
-    </div>
-  </div>
-</template>
+      <div class="mb-2">
+        <md-field>
+          <label>E-mail</label>
+          <md-input v-model="form.email" autofocus></md-input>
+        </md-field>
 
+        <md-field>
+          <label>Password</label>
+          <md-input v-model="form.password" type="password"></md-input>
+        </md-field>        
+        <md-button type="submit" @click="login" class="md-primary mt-2 md-raised">Submit</md-button>
+      </div>
+      <div class="md-title"><hr/>Or</div>
+      <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+    
+    </md-content>
+    
+  </div>
+  
+</template>
 <script>
 export default {
-  name: "login",
-  components: {},
-  data() {
+  data () {
     return {
-      msg: "Welcome to Quiz App",
-      form: {},
-      email: "",
-      password: "",
-      radio: 'false',
+      form: {
+        email: '',
+        password: ''
+      },
       user: {
         email: "akashkaushik33@gmail.com",
         password: "123456"
       }
-    };
+    }
   },
-  methods : {
-    login(form) {
+  methods: {
+    login() {
       console.log('EVENT')
-      form.email.toLowerCase()
-      if (form.email === this.user.email & form.password === this.user.password) {
-        sessionStorage.setItem('status', 'conncted')
-        sessionStorage.setItem('loggedInWith', 'credentials')
+      this.form.email.toLowerCase()
+      if (this.form.email === this.user.email & this.form.password === this.user.password) {
+        sessionStorage.setItem('status', 'connected')
         this.$router.push({name : 'home'})
+        this.form = {}
       } 
+    },
+  },
+  mounted(){
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId=1767336439980544&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+      console.log('MOUNT')
+  }
+}
+</script>
+<style lang="scss">
+@import '../main.scss';
+.centered-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  .title {
+    text-align: left;
+    margin-bottom: 30px;
+    img {
+      margin-bottom: 16px;
+      max-width: 80px;
     }
   }
-};
-</script>
+  .actions {
+    .md-button {
+      margin: 0;
+    }
+  }
+  .md-content {
+    z-index: 1;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+  }
+  .fb-login-button{
+    margin-top:10px;
+  }
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1,
-h2,
-h3 {
-  font-weight: normal;
-  color: rgb(71, 69, 69);
+  .md-elevation-3{
+    background-color: white;
+    border-radius: 10px;
+
+  }
 }
-/* ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-  text-decoration: none;
-} */
 </style>
