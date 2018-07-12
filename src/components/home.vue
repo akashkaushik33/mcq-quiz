@@ -61,9 +61,9 @@
       <md-button v-if="testCompleted" class="md-raised md-primary mb-5 mt-2" @click="changeGraph">Toggle Graph</md-button>
       <md-button v-if="testCompleted" class="md-raised md-primary mb-5 ml-2 mt-2" @click="downloadGraph">Download Graph</md-button>
 
+      <md-button @click="logout" class="md-primary md-raised" style="position:absolute; top:0px; right:0px">Logout</md-button>
     </div>
     
-    <md-button @click="logout" class="md-primary logout md-raised">Logout</md-button>
 
   </div>
 </template>
@@ -247,4 +247,5 @@ a {
   color: #42b983;
   text-decoration: none
 }
+
 </style>
