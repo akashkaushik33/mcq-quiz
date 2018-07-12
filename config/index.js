@@ -9,7 +9,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: 'mcq-quiz',
     proxyTable: {},
 
     // Various Dev Server settings
