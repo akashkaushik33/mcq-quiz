@@ -18,7 +18,10 @@
       </div>
       <div class="md-title"><hr/>Or</div>
       <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-    
+      <md-snackbar md-position="center" :md-duration="2000" :md-active.sync="showSnackbar">
+        <span>Incorrect username or password!</span>
+        <md-button class="md-primary" @click="showSnackbar = false">Retry</md-button>
+      </md-snackbar>
     </md-content>
     
   </div>
@@ -28,9 +31,10 @@
 export default {
   data () {
     return {
+      showSnackbar: false,
       form: {
         email: '',
-        password: ''
+        password: '',
       },
       user: {
         email: "akashkaushik33@gmail.com",
@@ -45,7 +49,10 @@ export default {
         sessionStorage.setItem('status', 'connected')
         this.$router.push({name : 'home'})
         this.form = {}
-      } 
+      } else {
+        console.log('Snackbar')
+        this.showSnackbar = true
+      }
     },
   },
   mounted(){
