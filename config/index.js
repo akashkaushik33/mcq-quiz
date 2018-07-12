@@ -8,6 +8,7 @@ module.exports = {
   dev: {
 
     // Paths
+    // path to create the static folder to append the dynamic files 
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {},

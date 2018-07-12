@@ -1,5 +1,6 @@
 <template>
   <div class="centered-container">
+    <!-- Login form -->
     <md-content class="md-elevation-3">
       <div class="title">
         <div class="md-title">Login</div>
@@ -17,7 +18,11 @@
         <md-button type="submit" @click="login" class="md-primary mt-2 md-raised">Submit</md-button>
       </div>
       <div class="md-title"><hr/>Or</div>
+      <!-- Facebook login button provided by facebook -->
+      <!-- checkLoginState method is in script tag inside index.html -->
       <div class="fb-login-button" onlogin="checkLoginState()" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
+      
+      <!-- notification are coming from here -->
       <md-snackbar md-position="center" :md-duration="2000" :md-active.sync="showSnackbar">
         <span>Incorrect username or password!</span>
         <md-button class="md-primary" @click="showSnackbar = false">Retry</md-button>
@@ -43,6 +48,7 @@ export default {
     }
   },
   methods: {
+    // function to check user credentials and routing him to home page for test
     login() {
       this.form.email.toLowerCase()
       if (this.form.email === this.user.email & this.form.password === this.user.password) {
@@ -50,12 +56,15 @@ export default {
         this.$router.push({name : 'home'})
         this.form = {}
       } else {
+        // making notification enable for 2 seconds if user credentials dont match
         console.log('Snackbar')
         this.showSnackbar = true
       }
     },
   },
   mounted(){
+    
+    // IIFE provided by facebook to dynamically create a script tag with functionality required for login
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;

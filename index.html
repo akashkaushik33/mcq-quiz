@@ -10,15 +10,16 @@
   <body>
     <div id="fb-root"></div>
     <script>
+      // Function to get login status
       function checkLoginState() {
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
+            // setting login status and login medium in user session
             sessionStorage.setItem('status',response.status);
             sessionStorage.setItem('loggedInWith', 'facebook')
-            console.log('window.location.href', window.location.href)
+            // redirecting to home through hard refresh (vue router is not accessible here)
             window.location.href = window.location.href + 'home'
           }
-          console.log('here', response)
         });
       }
       

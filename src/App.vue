@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- router view to load pages -->
     <router-view/>
   </div>
 </template>
@@ -11,6 +12,9 @@ export default {
     
   },
   created () {
+    // function to check wheteher a user is logged in and then redirecting him to home page
+    // commented out for now, but needed later
+
     // if (FB) {
     //   FB.getLoginStatus( (res) => {
     //   console.log('RES', res)

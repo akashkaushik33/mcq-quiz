@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Score board -->
     <div class="text-left p-3">
       <p>Total Score: {{score.count}}/{{score.total}}</p>
       <p>Magnetism: {{score.Magnetism}}</p>
@@ -7,8 +8,8 @@
       <p>Physics: {{score.Physics}}</p>
     </div>
     <div>
-      <canvas id="myChart">
-      </canvas>
+      <!-- Rendering chart here -->
+      <canvas id="myChart"></canvas>
     </div>
   </div>
 </template>
@@ -25,17 +26,23 @@
       }
     },
     watch: {
+      // check if there is any change in chart type from parent component
+      // if chart type is changed in parent function then it call createChart function to re-render the chart
       type () {
         this.createChart()
       }
     },
     methods: {
+      // funtion to create chart
       createChart() {
+        // destroyt the chart instance if exixted
         if (this.chart) {
           this.chart.destroy();
         }
+        // 
         const ctx = document.getElementById("myChart");
-
+        
+        // Chart plugin to change the background fromm black to white when we download chart as an image
         Chart.plugins.register({
           beforeDraw: function(chartInstance) {
             var ctx = chartInstance.chart.ctx;
@@ -44,6 +51,7 @@
           }
         });
 
+        // creating chart instance to render on canvas element
         this.chart = new Chart(ctx, {
           type: this.type,
           data: {
@@ -99,6 +107,9 @@
         });
       }
     },
+
+    // manipulating data for chart in mounted lifecycle hook
+    // this function will be called when this component initialises
     mounted() {
       Object.keys(this.score).forEach( (item) => {
         if (item != 'count'  && item != 'total') {
@@ -106,6 +117,7 @@
           this.labels.push(item)
         }
       })
+      // rendering chart when data manipulation finishes
       this.createChart()
     }
   }
