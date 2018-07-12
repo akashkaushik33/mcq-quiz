@@ -6,8 +6,6 @@ import login from '@/components/login'
 Vue.use(Router)
 
 export default new Router({
-  // mode history to remove /#/ from our app url
-  mode: 'history',
   routes: [
     {
       path: '/',

@@ -1,11 +1,12 @@
-<!DOCTYPE html><html><head><base href=./ ><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>mcq-quiz</title><link href=/static/css/app.f49fd955e914ef59d3bbed96a55a7dd8.css rel=stylesheet></head><body><div id=fb-root></div><script>function checkLoginState() {
+<!DOCTYPE html><html><head><base href=./ ><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>mcq-quiz</title><link href=/static/css/app.f49fd955e914ef59d3bbed96a55a7dd8.css rel=stylesheet></head><body><div id=fb-root></div><script>// Function to get login status
+      function checkLoginState() {
         FB.getLoginStatus(function(response) {
           if (response.status === 'connected') {
+            // setting login status and login medium in user session
             sessionStorage.setItem('status',response.status);
             sessionStorage.setItem('loggedInWith', 'facebook')
-            console.log('window.location.href', window.location.href)
+            // redirecting to home through hard refresh (vue router is not accessible here)
             window.location.href = window.location.href + 'home'
           }
-          console.log('here', response)
         });
-      }</script><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.9bbb3ca18e7df25003ca.js></script><script type=text/javascript src=/static/js/app.a752672114501d190a48.js></script></body></html>
+      }</script><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.9bbb3ca18e7df25003ca.js></script><script type=text/javascript src=/static/js/app.fe1cc6f8932f1de606c5.js></script></body></html>
