@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app-quiz">
     <!-- router view to load pages -->
     <router-view/>
   </div>
@@ -37,7 +37,7 @@ export default {
 
 <style lang="scss">
 // @import 'main.scss';
-#app {
+#app-quiz {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><base href=./ ><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>mcq-quiz</title><link href=http://localhost:8081/static/css/app.20e6876b60ec2c44f42d4f7b8ccb333f.css rel=stylesheet></head><body><div id=fb-root></div><script>// Function to get login status
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+        // setting login status and login medium in user session
+        sessionStorage.setItem('status',response.status);
+        sessionStorage.setItem('loggedInWith', 'facebook')
+        // redirecting to home through hard refresh (vue router is not accessible here)
+        window.location.href = window.location.href + 'home'
+      }
+    });
+  }</script><div id=app-quiz></div><script type=text/javascript src=http://localhost:8081/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=http://localhost:8081/static/js/vendor.9bbb3ca18e7df25003ca.js></script><script type=text/javascript src=http://localhost:8081/static/js/app.3631c7eca33d02f5ffee.js></script></body></html>

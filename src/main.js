@@ -22,7 +22,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: '#app-quiz',
   router,
   components: { App },
   template: '<App/>'
