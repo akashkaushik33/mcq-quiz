@@ -1,5 +1,6 @@
 'use strict'
 const utils = require('./utils')
+const fs = require('fs')
 const webpack = require('webpack')
 const config = require('../config')
 const merge = require('webpack-merge')
@@ -22,6 +23,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
   // these devServer options should be customized in /config/index.js
   devServer: {
+    disableHostCheck: true,
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
@@ -55,7 +57,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      serviceWorkerLoader: `<script>${fs.readFileSync(path.join(__dirname,
+        './service-worker-dev.js'), 'utf-8')}</script>`
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

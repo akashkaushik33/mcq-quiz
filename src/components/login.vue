@@ -51,7 +51,7 @@ export default {
     // function to check user credentials and routing him to home page for test
     login() {
       this.form.email.toLowerCase()
-      if (this.form.email === this.user.email & this.form.password === this.user.password) {
+      if (this.form.email.toLowerCase() === this.user.email && this.form.password === this.user.password) {
         sessionStorage.setItem('status', 'connected')
         this.$router.push({name : 'home'})
         this.form = {}
