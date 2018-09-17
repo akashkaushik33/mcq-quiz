@@ -2,11 +2,11 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const port = process.env.PORT || 8081;
-const history = require('connect-history-api-fallback');
+// const history = require('connect-history-api-fallback');
 
 // 
 app.use(cors())
-app.use(history())
+// app.use(history())
 app.use( express.static( __dirname + '/docs/'));
 
 app.get('/*', (req, res) => {
