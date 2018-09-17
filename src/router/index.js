@@ -7,7 +7,7 @@ Vue.use(Router)
 
 export default new Router({
   // mode history to remove /#/ from our app url
-  mode: 'history',
+  // mode: 'history',
   routes: [
     {
       path: '/',
